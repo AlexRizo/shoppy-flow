@@ -1,10 +1,7 @@
-export const fileNamer = (
-  req: Express.Request,
-  file: Express.Multer.File,
-  callback: any,
-) => {
-  console.log(file);
+import { v4 as uuid } from 'uuid';
+
+export const fileNamer = (file: Express.Multer.File) => {
   const fileExtension = file.mimetype.split('/')[1];
-  const fileName = `${file.originalname.split('.')[0]}.${fileExtension}`;
-  callback(null, fileName);
+  const fileName = `${uuid()}.${fileExtension}`;
+  return fileName;
 };
