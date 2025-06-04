@@ -14,7 +14,6 @@ import { FilesService } from './files.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 import { fileNamer } from './helpers/fileNamer.helper';
-import { fileFilter } from './helpers/fileFilter.helper';
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 import { writeFile } from 'fs/promises';
@@ -38,7 +37,6 @@ export class FilesController {
   @Post('product')
   @UseInterceptors(
     FileInterceptor('file', {
-      fileFilter: fileFilter,
       storage: memoryStorage(),
     }),
   )
